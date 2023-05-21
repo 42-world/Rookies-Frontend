@@ -1,24 +1,40 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 
-import { getMe } from "@/services";
+import { getMe, getMyArticles } from "@/services";
 import Image from "next/image";
 
 const Page = () => {
-  const { data, isError } = useQuery(["me"], () => getMe(), {
-    retry: false,
+  const [{ data: myData }, { data: myArticleData }] = useQueries({
+    queries: [
+      { queryKey: ["me"], queryFn: () => getMe() },
+      {
+        queryKey: ["myArticles"],
+        queryFn: () => getMyArticles(),
+      },
+    ],
   });
 
   return (
     <div>
       <Image src="/blushblush.png" alt="blush" width={100} height={100} />
-      {data && (
+      {myData && (
         <div>
-          <h2 style={{ display: "inline-block" }}>{data.nickname}</h2>
-          <span> is {data.role}</span>
+          <h2 style={{ display: "inline-block" }}>{myData.nickname}</h2>
+          <span> is {myData.role}</span>
         </div>
       )}
+      <div>
+        <h3>내 게시글</h3>
+        {myArticleData && (
+          <ul>
+            {myArticleData.data.map((article: any, index) => (
+              <li key={`my-article-${index}`}>{article.title}</li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
