@@ -4,13 +4,18 @@ import { getArticles } from "@/services/getArticles";
 
 export const ArticleList = () => {
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
-    useInfinityQueryWithMeta(["articles"], ({ pageParam = 1 }) =>
-      getArticles({
-        order: "ASC",
-        page: pageParam,
-        take: 10,
-        categoryId: 1,
-      })
+    useInfinityQueryWithMeta(
+      ["articles"],
+      ({ pageParam = 1 }) =>
+        getArticles({
+          order: "ASC",
+          page: pageParam,
+          take: 10,
+          categoryId: 1,
+        }),
+      {
+        suspense: true,
+      }
     );
 
   const { ref: observerRef } = useIntersectionObserver<HTMLButtonElement>({
