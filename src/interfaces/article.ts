@@ -19,7 +19,7 @@ export interface Article {
   categoryId: number;
   category: Category;
   writerId: number;
-  write: User;
+  writer: User;
   commentCount: number;
   likeCount: number;
   createdAt: Date;
