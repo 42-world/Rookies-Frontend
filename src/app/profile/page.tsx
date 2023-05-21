@@ -2,19 +2,21 @@
 
 import { useQueries, useQuery } from "@tanstack/react-query";
 
-import { getMe, getMyArticles } from "@/services";
+import { getMe, getMyArticles, getMyComments } from "@/services";
 import Image from "next/image";
 
 const Page = () => {
-  const [{ data: myData }, { data: myArticleData }] = useQueries({
-    queries: [
-      { queryKey: ["me"], queryFn: () => getMe() },
-      {
-        queryKey: ["myArticles"],
-        queryFn: () => getMyArticles(),
-      },
-    ],
-  });
+  const [{ data: myData }, { data: myArticleData }, { data: myCommentData }] =
+    useQueries({
+      queries: [
+        { queryKey: ["me"], queryFn: () => getMe() },
+        {
+          queryKey: ["myArticles"],
+          queryFn: () => getMyArticles(),
+        },
+        { queryKey: ["myComments"], queryFn: () => getMyComments() },
+      ],
+    });
 
   return (
     <div>
@@ -29,8 +31,18 @@ const Page = () => {
         <h3>내 게시글</h3>
         {myArticleData && (
           <ul>
-            {myArticleData.data.map((article: any, index) => (
+            {myArticleData.data.map((article: any, index: number) => (
               <li key={`my-article-${index}`}>{article.title}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div>
+        <h3>내 댓글</h3>
+        {myCommentData && (
+          <ul>
+            {myCommentData.data.map((comment: any, index: number) => (
+              <li key={`my-comment-${index}`}>{comment.content}</li>
             ))}
           </ul>
         )}
