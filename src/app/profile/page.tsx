@@ -2,21 +2,31 @@
 
 import { useQueries, useQuery } from "@tanstack/react-query";
 
-import { getMe, getMyArticles, getMyComments } from "@/services";
+import {
+  getMe,
+  getMyArticles,
+  getMyComments,
+  getMyLikedArticles,
+} from "@/services";
 import Image from "next/image";
 
 const Page = () => {
-  const [{ data: myData }, { data: myArticleData }, { data: myCommentData }] =
-    useQueries({
-      queries: [
-        { queryKey: ["me"], queryFn: () => getMe() },
-        {
-          queryKey: ["myArticles"],
-          queryFn: () => getMyArticles(),
-        },
-        { queryKey: ["myComments"], queryFn: () => getMyComments() },
-      ],
-    });
+  const [
+    { data: myData },
+    { data: myArticleData },
+    { data: myCommentData },
+    { data: myLikedArticleData },
+  ] = useQueries({
+    queries: [
+      { queryKey: ["me"], queryFn: () => getMe() },
+      {
+        queryKey: ["myArticles"],
+        queryFn: () => getMyArticles(),
+      },
+      { queryKey: ["myComments"], queryFn: () => getMyComments() },
+      { queryKey: ["myLikedArticles"], queryFn: () => getMyLikedArticles() },
+    ],
+  });
 
   return (
     <div>
@@ -58,6 +68,16 @@ const Page = () => {
           <ul>
             {myCommentData.data.map((comment: any, index: number) => (
               <li key={`my-comment-${index}`}>{comment.content}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <div>
+        <h3>좋아요한 게시글</h3>
+        {myLikedArticleData && (
+          <ul>
+            {myLikedArticleData.data.map((article: any, index: number) => (
+              <li key={`my-liked-article-${index}`}>{article.title}</li>
             ))}
           </ul>
         )}
