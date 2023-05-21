@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-query";
 import type { WithPageMeta } from "@/interfaces/article";
 
-export const useInfinityQueryWithMeta = <TData extends WithPageMeta<{}>>(
+export const useInfiniteQueryWithMeta = <TData extends WithPageMeta<{}>>(
   queryKey: QueryKey,
   fetchFn: QueryFunction<TData>,
   config?: UseInfiniteQueryOptions<TData>

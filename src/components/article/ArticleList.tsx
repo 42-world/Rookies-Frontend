@@ -1,10 +1,10 @@
-import { useInfinityQueryWithMeta } from "@/app/board/useInfinityQueryWithMeta";
+import { useInfiniteQueryWithMeta } from "@/hooks/useInfiniteQueryWithMeta";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { getArticles } from "@/services/getArticles";
 
 export const ArticleList = () => {
   const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
-    useInfinityQueryWithMeta(
+    useInfiniteQueryWithMeta(
       ["articles"],
       ({ pageParam = 1 }) =>
         getArticles({
