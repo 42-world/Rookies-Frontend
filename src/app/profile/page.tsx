@@ -28,6 +28,21 @@ const Page = () => {
         </div>
       )}
       <div>
+        <h3>정보</h3>
+        <dl>
+          <dt>Bio</dt>
+          <dd>42World & Rookies team</dd>
+        </dl>
+        <dl>
+          <dt>지역</dt>
+          <dd>서울</dd>
+        </dl>
+        <dl>
+          <dt>소속</dt>
+          <dd>42Seoul</dd>
+        </dl>
+      </div>
+      <div>
         <h3>내 게시글</h3>
         {myArticleData && (
           <ul>
