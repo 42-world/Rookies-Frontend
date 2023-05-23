@@ -1,5 +1,3 @@
-"use client";
-
 import { ArticleList } from "@/components/article/ArticleList";
 import { Suspense } from "react";
 

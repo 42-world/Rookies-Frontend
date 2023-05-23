@@ -1,3 +1,5 @@
+"use client";
+
 import { useInfiniteQueryWithMeta } from "@/hooks/useInfiniteQueryWithMeta";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { getArticles } from "@/services/getArticles";
