@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "ssl": "npx local-ssl-proxy --source 3001 --target 3000",
+    "dev": "echo 'INFO  - If you are using the alpha server, please use https://localhost:3001 ' && yarn ssl | next dev -p 3000",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

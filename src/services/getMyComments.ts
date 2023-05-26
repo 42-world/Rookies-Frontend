@@ -1,5 +1,5 @@
 export async function getMyComments() {
-  const res = await fetch("http://localhost:8888/users/me/comments", {
+  const res = await fetch("https://api-alpha.42world.kr/users/me/comments", {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
