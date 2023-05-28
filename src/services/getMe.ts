@@ -1,4 +1,5 @@
 import { Article, Comment, WithPageMeta } from "@/interfaces/article";
+import { User } from "@/interfaces/user";
 import { api } from "@/libs/fetch";
 
 interface Params {
@@ -7,31 +8,12 @@ interface Params {
   take?: number;
 }
 
-export async function getMe() {
-  // TODO: axios로 변경
-  const res = await fetch("https://api-alpha.42world.kr/users/me", {
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = res.json();
-
-  if (res.status !== 200) {
-    throw new Error();
-  }
-
-  return data;
-}
-
 async function getMyData<T extends Article | Comment>(
   params: Params,
   path: string
 ): Promise<WithPageMeta<T[]>> {
   const { data: dataList, meta } = await api.get<WithPageMeta<T[]>>(
-    `https://api-alpha.42world.kr/users/me/${path}${new URLSearchParams(
-      params as Record<string, string>
-    )}`
+    `/users/me/${path}${new URLSearchParams(params as Record<string, string>)}`
   );
 
   return {
@@ -42,6 +24,10 @@ async function getMyData<T extends Article | Comment>(
     })),
     meta,
   };
+}
+
+export async function getMe() {
+  return await api.get<User>("/users/me");
 }
 
 export async function getMyComments(

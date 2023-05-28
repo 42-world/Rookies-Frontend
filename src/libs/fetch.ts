@@ -2,7 +2,10 @@ async function request<TResponse>(
   url: string,
   config: RequestInit = {}
 ): Promise<TResponse> {
-  const res = await fetch(url, config);
+  const res = await fetch(
+    (process.env.NEXT_PUBLIC_BASE_URL ?? "https://api-alpha.42world.kr") + url,
+    config
+  );
   return await res.json();
 }
 
