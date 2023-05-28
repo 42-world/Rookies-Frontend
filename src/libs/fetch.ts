@@ -2,10 +2,9 @@ async function request<TResponse>(
   url: string,
   config: RequestInit = {}
 ): Promise<TResponse> {
-  const res = await fetch(
-    (process.env.NEXT_PUBLIC_BASE_URL ?? "https://api-alpha.42world.kr") + url,
-    config
-  );
+  const baseUrl =
+    (process.env.NEXT_PUBLIC_BASE_URL ?? "https://api-alpha.42world.kr") + url;
+  const res = await fetch(baseUrl, config);
   return await res.json();
 }
 
