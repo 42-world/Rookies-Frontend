@@ -13,7 +13,7 @@ async function getMyData<T extends Article | Comment>(
   path: string
 ): Promise<WithPageMeta<T[]>> {
   const { data: dataList, meta } = await api.get<WithPageMeta<T[]>>(
-    `/users/me/${path}${new URLSearchParams(params as Record<string, string>)}`
+    `/users/me/${path}?${new URLSearchParams(params as Record<string, string>)}`
   );
 
   return {
