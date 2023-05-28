@@ -1,6 +1,6 @@
 export async function getMe() {
   // TODO: axios로 변경
-  const res = await fetch("http://localhost:8888/users/me", {
+  const res = await fetch("https://api-alpha.42world.kr/users/me", {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
