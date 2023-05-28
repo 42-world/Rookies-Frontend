@@ -30,7 +30,13 @@ const Page = () => {
 
   return (
     <div>
-      <Image src="/blushblush.png" alt="blush" width={100} height={100} />
+      <Image
+        priority
+        src="/blushblush.png"
+        alt="blush"
+        width={100}
+        height={100}
+      />
       {myData && (
         <div>
           <h2 style={{ display: "inline-block" }}>{myData.nickname}</h2>
