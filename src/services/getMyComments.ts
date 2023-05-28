@@ -1,15 +1,29 @@
-export async function getMyComments() {
-  const res = await fetch("https://api-alpha.42world.kr/users/me/comments", {
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = res.json();
+import { Comment, WithPageMeta } from "@/interfaces/article";
+import { api } from "@/libs/fetch";
 
-  if (res.status !== 200) {
-    throw new Error();
-  }
+interface Params {
+  order?: "ASC" | "DESC";
+  page?: number;
+  take?: number;
+}
 
-  return data;
+type GetCommentsResponse = WithPageMeta<Comment[]>;
+
+export async function getMyComments(
+  params: Params
+): Promise<GetCommentsResponse> {
+  const { data, meta } = await api.get<GetCommentsResponse>(
+    `https://api-alpha.42world.kr/users/me/comments${new URLSearchParams(
+      params as Record<string, string>
+    )}`
+  );
+
+  return {
+    data: data.map((comment) => ({
+      ...comment,
+      createdAt: new Date(comment.createdAt),
+      updatedAt: new Date(comment.updatedAt),
+    })),
+    meta,
+  };
 }

@@ -34,8 +34,8 @@ export interface Comment {
   articleId: number;
   writerId: number;
   writer: User;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
   isLike: boolean;
   isSelf: boolean;
 }
