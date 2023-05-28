@@ -1,8 +1,8 @@
 enum USER_ROLE {
-  ADMIN = "ADMIN",
-  CADET = "CADET",
-  GUEST = "GUEST",
-  NOVICE = "NOVICE",
+  ADMIN = 'ADMIN',
+  CADET = 'CADET',
+  GUEST = 'GUEST',
+  NOVICE = 'NOVICE',
 }
 
 type Role = USER_ROLE;

@@ -1,24 +1,23 @@
-"use client";
+'use client';
 
-import { useInfiniteQueryWithMeta } from "@/hooks/useInfiniteQueryWithMeta";
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import { getArticles } from "@/services/getArticles";
+import { getArticles } from '@/services/getArticles';
+import { useInfiniteQueryWithMeta } from '@/hooks/useInfiniteQueryWithMeta';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 export const ArticleList = () => {
-  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } =
-    useInfiniteQueryWithMeta(
-      ["articles"],
-      ({ pageParam = 1 }) =>
-        getArticles({
-          order: "ASC",
-          page: pageParam,
-          take: 10,
-          categoryId: 1,
-        }),
-      {
-        suspense: true,
-      }
-    );
+  const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage } = useInfiniteQueryWithMeta(
+    ['articles'],
+    ({ pageParam = 1 }) =>
+      getArticles({
+        order: 'ASC',
+        page: pageParam,
+        take: 10,
+        categoryId: 1,
+      }),
+    {
+      suspense: true,
+    },
+  );
 
   const { ref: observerRef } = useIntersectionObserver<HTMLButtonElement>({
     onIntersect: () => {
@@ -35,8 +34,8 @@ export const ArticleList = () => {
           <li
             key={article.id}
             style={{
-              padding: "50px",
-              display: "flex",
+              padding: '50px',
+              display: 'flex',
             }}
           >
             <div>
@@ -49,14 +48,10 @@ export const ArticleList = () => {
               <span>{article.commentCount}</span>
             </div>
           </li>
-        ))
+        )),
       )}
       <button ref={observerRef}>
-        {isFetching
-          ? "가져오는 중..."
-          : hasNextPage
-          ? "게시글 더 가져오기"
-          : "더 이상 게시글이 없습니다"}
+        {isFetching ? '가져오는 중...' : hasNextPage ? '게시글 더 가져오기' : '더 이상 게시글이 없습니다'}
       </button>
     </>
   );
