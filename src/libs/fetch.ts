@@ -1,9 +1,9 @@
 async function request<TResponse>(
-  url: string,
+  path: string,
   config: RequestInit = {}
 ): Promise<TResponse> {
   const baseUrl =
-    (process.env.NEXT_PUBLIC_BASE_URL ?? "https://api-alpha.42world.kr") + url;
+    (process.env.NEXT_PUBLIC_BASE_URL ?? "https://api-alpha.42world.kr") + path;
   const res = await fetch(baseUrl, config);
   return await res.json();
 }
