@@ -6,10 +6,10 @@ import {
 } from "@tanstack/react-query";
 import type { WithPageMeta } from "@/interfaces/article";
 
-export const useInfiniteQueryWithMeta = <TData extends WithPageMeta<{}>>(
+export const useInfiniteQueryWithMeta = <T>(
   queryKey: QueryKey,
-  fetchFn: QueryFunction<TData>,
-  config?: UseInfiniteQueryOptions<TData>
+  fetchFn: QueryFunction<WithPageMeta<T>>,
+  config?: UseInfiniteQueryOptions<WithPageMeta<T>>
 ) => {
   return useInfiniteQuery(queryKey, fetchFn, {
     getNextPageParam: (lastPage) => {
