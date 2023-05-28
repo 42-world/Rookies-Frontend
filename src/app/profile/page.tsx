@@ -23,7 +23,7 @@ const Page = () => {
         queryKey: ["myArticles"],
         queryFn: () => getMyArticles(),
       },
-      { queryKey: ["myComments"], queryFn: () => getMyComments({}) },
+      { queryKey: ["myComments"], queryFn: () => getMyComments() },
       { queryKey: ["myLikedArticles"], queryFn: () => getMyLikedArticles() },
     ],
   });
