@@ -1,0 +1,25 @@
+{
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 120,
+  "arrowParens": "always",
+  "endOfLine": "auto",
+  "bracketSameLine": false,
+  "importOrder": [
+    "^next",
+    "^react",
+    "<THIRD_PARTY_MODULES>",
+    "^@/components/(.*)$",
+    "^@interfaces/(.*)$",
+    "^@services/(.*)$",
+    "^@hooks/(.*)$",
+    "^@styles/(.*)$",
+    "^@libs/(.*)$",
+    "^@utils/(.*)$",
+    "^~"
+  ],
+  "importOrderSortSpecifiers": true
+}
