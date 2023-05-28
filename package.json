@@ -7,7 +7,8 @@
     "dev": "echo 'INFO  - If you are using the alpha server, please use https://localhost:3001 ' && yarn ssl | next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --cache --write ."
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.5",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@tanstack/react-query-devtools": "^4.29.6",
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
