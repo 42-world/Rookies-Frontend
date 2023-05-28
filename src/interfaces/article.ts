@@ -27,6 +27,19 @@ export interface Article {
   isSelf: boolean;
 }
 
+export interface Comment {
+  id: number;
+  content: string;
+  likeCount: number;
+  articleId: number;
+  writerId: number;
+  writer: User;
+  createdAt: string;
+  updatedAt: string;
+  isLike: boolean;
+  isSelf: boolean;
+}
+
 export interface PageMeta {
   page: number;
   take: number;
