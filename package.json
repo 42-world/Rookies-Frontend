@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --cache --write ."
+    "format": "prettier --cache --write ./src"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.5",
