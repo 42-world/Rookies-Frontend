@@ -8,7 +8,7 @@ const nextConfig = {
     if (phase === "dev") {
       return [
         {
-          source: "/__api__/:path*",
+          source: "/api/:path*",
           destination: "https://api-alpha.42world.kr/:path*",
         },
       ];
