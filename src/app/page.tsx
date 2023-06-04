@@ -2,20 +2,7 @@
 
 import { useQueries } from '@tanstack/react-query';
 import { getMe } from '@/services';
-
-async function getArticles() {
-  const res = await fetch('http://localhost:3000/api/articles?order=DESC&page=1&take=10&categoryId=1', {
-    credentials: 'include',
-  });
-
-  const data = res.json();
-
-  if (res.status !== 200) {
-    throw new Error();
-  }
-
-  return data;
-}
+import { getArticles } from '@/services/getArticles';
 
 export default function Page() {
   const [{ data: myData, isError }, { data: articleData }] = useQueries({
@@ -23,7 +10,7 @@ export default function Page() {
       { queryKey: ['me'], queryFn: () => getMe() },
       {
         queryKey: ['articles'],
-        queryFn: () => getArticles(),
+        queryFn: () => getArticles({ order: 'DESC', page: 1, take: 10, categoryId: 1 }),
       },
     ],
   });
