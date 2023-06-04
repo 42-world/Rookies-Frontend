@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 
 async function login(code: string | null) {
   const res = await fetch(
-    `https://api-alpha.42world.kr/auth/github/callback?code=${code}`,
+    `https://localhost:3001/api/auth/github/callback?code=${code}`,
     {
       credentials: "include",
     }

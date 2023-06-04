@@ -5,9 +5,12 @@ import { useQueries } from "@tanstack/react-query";
 import { getMe } from "@/services";
 
 async function getArticles() {
-  const res = await fetch("http://localhost:8888/articles?order=DESC&page=1&take=10&categoryId=1", {
-    credentials: "include",
-  });
+  const res = await fetch(
+    "http://localhost:3000/api/articles?order=DESC&page=1&take=10&categoryId=1",
+    {
+      credentials: "include",
+    }
+  );
 
   const data = res.json();
 
@@ -32,7 +35,11 @@ export default function Page() {
   return (
     <>
       <h1>Rookies 홈이지롱!!</h1>
-      {isError ? <pre>에러 ㅋ</pre> : <pre>{JSON.stringify(myData, null, 2)}</pre>}
+      {isError ? (
+        <pre>에러 ㅋ</pre>
+      ) : (
+        <pre>{JSON.stringify(myData, null, 2)}</pre>
+      )}
       {articleData &&
         articleData.data.map((article: any) => (
           <ul key={article.id}>

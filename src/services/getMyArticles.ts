@@ -1,5 +1,5 @@
 export async function getMyArticles() {
-  const res = await fetch("https://api-alpha.42world.kr/users/me/articles", {
+  const res = await fetch("https://localhost:3001/api/users/me/articles", {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
