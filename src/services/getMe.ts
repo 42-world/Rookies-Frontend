@@ -8,9 +8,14 @@ interface Params {
   take?: number;
 }
 
-async function getMyData<T extends Article | Comment>(params: Params, path: string): Promise<WithPageMeta<T[]>> {
+async function getMyData<T extends Article | Comment>(
+  params: Params,
+  path: string,
+  config?: RequestInit,
+): Promise<WithPageMeta<T[]>> {
   const { data: dataList, meta } = await api.get<WithPageMeta<T[]>>(
     `/users/me/${path}?${new URLSearchParams(params as Record<string, string>)}`,
+    config,
   );
 
   return {
@@ -24,27 +29,34 @@ async function getMyData<T extends Article | Comment>(params: Params, path: stri
 }
 
 export async function getMe(option: { cookieHeader?: string } = {}) {
-  const headers: Record<string, string> = {
-    'Content-Type': 'application/json',
-  };
+  const headers: Record<string, string> = option.cookieHeader ? { Cookie: option.cookieHeader } : {};
 
-  if (option.cookieHeader) {
-    headers['Cookie'] = option.cookieHeader;
-  }
-
-  return await api.get<User>('/users/me', {
-    headers,
-  });
+  return await api.get<User>('/users/me', { headers });
 }
 
-export async function getMyComments(params: Params = {}): Promise<WithPageMeta<Comment[]>> {
-  return getMyData<Comment>(params, 'comments');
+export async function getMyComments(
+  params: Params = {},
+  option: { cookieHeader?: string } = {},
+): Promise<WithPageMeta<Comment[]>> {
+  const headers: Record<string, string> = option.cookieHeader ? { Cookie: option.cookieHeader } : {};
+
+  return getMyData<Comment>(params, 'comments', { headers });
 }
 
-export async function getMyArticles(params: Params = {}): Promise<WithPageMeta<Article[]>> {
-  return getMyData<Article>(params, 'articles');
+export async function getMyArticles(
+  params: Params = {},
+  option: { cookieHeader?: string } = {},
+): Promise<WithPageMeta<Article[]>> {
+  const headers: Record<string, string> = option.cookieHeader ? { Cookie: option.cookieHeader } : {};
+
+  return getMyData<Article>(params, 'articles', { headers });
 }
 
-export async function getMyLikedArticles(params: Params = {}): Promise<WithPageMeta<Article[]>> {
-  return getMyData<Article>(params, 'like-articles');
+export async function getMyLikedArticles(
+  params: Params = {},
+  option: { cookieHeader?: string } = {},
+): Promise<WithPageMeta<Article[]>> {
+  const headers: Record<string, string> = option.cookieHeader ? { Cookie: option.cookieHeader } : {};
+
+  return getMyData<Article>(params, 'like-articles', { headers });
 }
