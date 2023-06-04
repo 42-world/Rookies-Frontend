@@ -1,45 +1,30 @@
-"use client";
+'use client';
 
-import { useQueries, useQuery } from "@tanstack/react-query";
-
-import {
-  getMe,
-  getMyArticles,
-  getMyComments,
-  getMyLikedArticles,
-} from "@/services";
-import Image from "next/image";
+import Image from 'next/image';
+import { useQueries, useQuery } from '@tanstack/react-query';
+import { getMe, getMyArticles, getMyComments, getMyLikedArticles } from '@/services';
 
 const Page = () => {
-  const [
-    { data: myData },
-    { data: myArticleData },
-    { data: myCommentData },
-    { data: myLikedArticleData },
-  ] = useQueries({
-    queries: [
-      { queryKey: ["me"], queryFn: () => getMe() },
-      {
-        queryKey: ["myArticles"],
-        queryFn: () => getMyArticles(),
-      },
-      { queryKey: ["myComments"], queryFn: () => getMyComments() },
-      { queryKey: ["myLikedArticles"], queryFn: () => getMyLikedArticles() },
-    ],
-  });
+  const [{ data: myData }, { data: myArticleData }, { data: myCommentData }, { data: myLikedArticleData }] = useQueries(
+    {
+      queries: [
+        { queryKey: ['me'], queryFn: () => getMe() },
+        {
+          queryKey: ['myArticles'],
+          queryFn: () => getMyArticles(),
+        },
+        { queryKey: ['myComments'], queryFn: () => getMyComments() },
+        { queryKey: ['myLikedArticles'], queryFn: () => getMyLikedArticles() },
+      ],
+    },
+  );
 
   return (
     <div>
-      <Image
-        priority
-        src="/blushblush.png"
-        alt="blush"
-        width={100}
-        height={100}
-      />
+      <Image priority src='/blushblush.png' alt='blush' width={100} height={100} />
       {myData && (
         <div>
-          <h2 style={{ display: "inline-block" }}>{myData.nickname}</h2>
+          <h2 style={{ display: 'inline-block' }}>{myData.nickname}</h2>
           <span> is {myData.role}</span>
         </div>
       )}

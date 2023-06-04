@@ -1,9 +1,6 @@
-"use client";
+'use client';
 
-import {
-  Hydrate as ReactQueryHydrate,
-  HydrateProps,
-} from "@tanstack/react-query";
+import { HydrateProps, Hydrate as ReactQueryHydrate } from '@tanstack/react-query';
 
 function Hydrate(props: HydrateProps) {
   return <ReactQueryHydrate {...props} />;

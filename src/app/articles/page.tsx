@@ -1,5 +1,5 @@
-import { ArticleList } from "@/components/article/ArticleList";
-import { Suspense } from "react";
+import { Suspense } from 'react';
+import { ArticleList } from '@/components/article/ArticleList';
 
 const Page = () => {
   return (
