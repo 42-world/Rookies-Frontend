@@ -1,27 +1,35 @@
-'use client';
-
+import { cookies } from 'next/headers';
 import Image from 'next/image';
-import { useQueries, useQuery } from '@tanstack/react-query';
-import { getMe, getMyArticles, getMyComments, getMyLikedArticles } from '@/services';
+import { getMe, getMyArticles, getMyComments, getMyLikedArticles } from '../../services';
 
-const Page = () => {
-  const [{ data: myData }, { data: myArticleData }, { data: myCommentData }, { data: myLikedArticleData }] = useQueries(
-    {
-      queries: [
-        { queryKey: ['me'], queryFn: () => getMe() },
-        {
-          queryKey: ['myArticles'],
-          queryFn: () => getMyArticles(),
-        },
-        { queryKey: ['myComments'], queryFn: () => getMyComments() },
-        { queryKey: ['myLikedArticles'], queryFn: () => getMyLikedArticles() },
-      ],
-    },
-  );
+export default async function Profile() {
+  // const [
+  //   { data: myData },
+  //   { data: myArticleData },
+  //   { data: myCommentData },
+  //   { data: myLikedArticleData },
+  // ] = useQueries({
+  //   queries: [
+  //     { queryKey: ["hydrate-me"], queryFn: () => getMe() },
+  //     {
+  //       queryKey: ["myArticles"],
+  //       queryFn: () => getMyArticles(),
+  //     },
+  //     { queryKey: ["myComments"], queryFn: () => getMyComments() },
+  //     { queryKey: ["myLikedArticles"], queryFn: () => getMyLikedArticles() },
+  //   ],
+  // });
+
+  const cookieHeader = cookies().toString();
+
+  const myData = await getMe({ cookieHeader });
+  const myArticleData = await getMyArticles({}, { cookieHeader });
+  const myCommentData = await getMyComments({}, { cookieHeader });
+  const myLikedArticleData = await getMyLikedArticles({}, { cookieHeader });
 
   return (
     <div>
-      <Image priority src='/blushblush.png' alt='blush' width={100} height={100} />
+      <Image src='/blushblush.png' alt='blush' width={100} height={100} />
       {myData && (
         <div>
           <h2 style={{ display: 'inline-block' }}>{myData.nickname}</h2>
@@ -32,7 +40,7 @@ const Page = () => {
         <h3>정보</h3>
         <dl>
           <dt>Bio</dt>
-          <dd>42World & Rookies team</dd>
+          {/* <dd>42World & Rookies team</dd> */}
         </dl>
         <dl>
           <dt>지역</dt>
@@ -75,6 +83,4 @@ const Page = () => {
       </div>
     </div>
   );
-};
-
-export default Page;
+}
