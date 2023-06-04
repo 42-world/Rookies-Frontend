@@ -1,6 +1,1 @@
-export {
-  getMe,
-  getMyArticles,
-  getMyComments,
-  getMyLikedArticles,
-} from "./getMe";
+export { getMe, getMyArticles, getMyComments, getMyLikedArticles } from './getMe';

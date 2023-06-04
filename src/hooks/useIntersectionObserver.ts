@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 interface UseIntersectionObserverProps {
   options?: IntersectionObserverInit;
@@ -8,7 +8,7 @@ interface UseIntersectionObserverProps {
 const defaultOptions: IntersectionObserverInit = {
   root: null,
   threshold: 0.5,
-  rootMargin: "0px",
+  rootMargin: '0px',
 };
 
 export const useIntersectionObserver = <T extends HTMLElement>({
