@@ -1,22 +1,49 @@
-export async function getMe(cookies?: string) {
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
+import { Article, Comment, WithPageMeta } from "@/interfaces/article";
+import { User } from "@/interfaces/user";
+import { api } from "@/libs/fetch";
+
+interface Params {
+  order?: "ASC" | "DESC";
+  page?: number;
+  take?: number;
+}
+
+async function getMyData<T extends Article | Comment>(
+  params: Params,
+  path: string
+): Promise<WithPageMeta<T[]>> {
+  const { data: dataList, meta } = await api.get<WithPageMeta<T[]>>(
+    `/users/me/${path}?${new URLSearchParams(params as Record<string, string>)}`
+  );
+
+  return {
+    data: dataList.map((data) => ({
+      ...data,
+      createdAt: new Date(data.createdAt),
+      updatedAt: new Date(data.updatedAt),
+    })),
+    meta,
   };
+}
 
-  if (cookies) {
-    headers["Cookie"] = cookies;
-  }
+export async function getMe() {
+  return await api.get<User>("/users/me");
+}
 
-  // TODO: axios로 변경
-  const res = await fetch("https://localhost:3001/api/users/me", {
-    credentials: "include",
-    headers,
-  });
-  const data = res.json();
+export async function getMyComments(
+  params: Params = {}
+): Promise<WithPageMeta<Comment[]>> {
+  return getMyData<Comment>(params, "comments");
+}
 
-  if (res.status !== 200) {
-    throw new Error("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-  }
+export async function getMyArticles(
+  params: Params = {}
+): Promise<WithPageMeta<Article[]>> {
+  return getMyData<Article>(params, "articles");
+}
 
-  return data;
+export async function getMyLikedArticles(
+  params: Params = {}
+): Promise<WithPageMeta<Article[]>> {
+  return getMyData<Article>(params, "like-articles");
 }

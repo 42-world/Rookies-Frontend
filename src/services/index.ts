@@ -1,4 +1,6 @@
-export { getMe } from "./getMe";
-export { getMyArticles } from "./getMyArticles";
-export { getMyComments } from "./getMyComments";
-export { getMyLikedArticles } from "./getMyLikedArticles";
+export {
+  getMe,
+  getMyArticles,
+  getMyComments,
+  getMyLikedArticles,
+} from "./getMe";
