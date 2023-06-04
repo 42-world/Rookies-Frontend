@@ -7,10 +7,13 @@ import Hydrate from '@/libs/hydrate.client';
 
 export default async function Hydation() {
   const cookieStore = cookies();
-  //cookieStore.toString()
 
   const queryClient = getQueryClient();
-  await queryClient.prefetchQuery(['hydrate-me'], () => getMe());
+  await queryClient.prefetchQuery(['hydrate-me'], () =>
+    getMe({
+      cookieHeader: cookieStore.toString(),
+    }),
+  );
   const dehydratedState = dehydrate(queryClient);
 
   return (

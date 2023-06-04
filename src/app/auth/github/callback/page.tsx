@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 
 async function login(code: string | null) {
-  const res = await fetch(`https://localhost:3001/api/auth/github/callback?code=${code}`, {
+  const res = await fetch(`http://localhost:3000/api/auth/github/callback?code=${code}`, {
     credentials: 'include',
   });
   const data = await res.json();

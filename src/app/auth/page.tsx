@@ -1,3 +1,3 @@
 export default function Page() {
-  return <a href='https://localhost:3001/api/auth/github'>로그인</a>;
+  return <a href='http://localhost:3000/api/auth/github'>로그인</a>;
 }

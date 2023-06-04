@@ -4,7 +4,7 @@ import { useQueries } from '@tanstack/react-query';
 import { getMe } from '@/services';
 
 async function getArticles() {
-  const res = await fetch('https://localhost:3001/api/articles?order=DESC&page=1&take=10&categoryId=1', {
+  const res = await fetch('http://localhost:3000/api/articles?order=DESC&page=1&take=10&categoryId=1', {
     credentials: 'include',
   });
 

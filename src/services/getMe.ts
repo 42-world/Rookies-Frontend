@@ -23,8 +23,18 @@ async function getMyData<T extends Article | Comment>(params: Params, path: stri
   };
 }
 
-export async function getMe() {
-  return await api.get<User>('/users/me');
+export async function getMe(option: { cookieHeader?: string } = {}) {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  };
+
+  if (option.cookieHeader) {
+    headers['Cookie'] = option.cookieHeader;
+  }
+
+  return await api.get<User>('/users/me', {
+    headers,
+  });
 }
 
 export async function getMyComments(params: Params = {}): Promise<WithPageMeta<Comment[]>> {
