@@ -8,14 +8,13 @@ async function login(code: string | null) {
   const res = await fetch(`http://localhost:3000/api/auth/github/callback?code=${code}`, {
     credentials: 'include',
   });
-  const data = await res.json();
-  return data;
+  return res;
 }
 
 export default function Page() {
   const searchParams = useSearchParams();
   const code = searchParams.get('code');
-  const { data, isLoading, isError } = useQuery(['login', code], () => login(code), {
+  const { isLoading, isError } = useQuery(['login', code], () => login(code), {
     enabled: code !== null,
   });
 
