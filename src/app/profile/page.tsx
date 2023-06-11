@@ -3,29 +3,17 @@ import Image from 'next/image';
 import { getMe, getMyArticles, getMyComments, getMyLikedArticles } from '../../services';
 
 export default async function Profile() {
-  // const [
-  //   { data: myData },
-  //   { data: myArticleData },
-  //   { data: myCommentData },
-  //   { data: myLikedArticleData },
-  // ] = useQueries({
-  //   queries: [
-  //     { queryKey: ["hydrate-me"], queryFn: () => getMe() },
-  //     {
-  //       queryKey: ["myArticles"],
-  //       queryFn: () => getMyArticles(),
-  //     },
-  //     { queryKey: ["myComments"], queryFn: () => getMyComments() },
-  //     { queryKey: ["myLikedArticles"], queryFn: () => getMyLikedArticles() },
-  //   ],
-  // });
-
   const cookieHeader = cookies().toString();
 
   const myData = await getMe({ cookieHeader });
   const myArticleData = await getMyArticles({}, { cookieHeader });
   const myCommentData = await getMyComments({}, { cookieHeader });
   const myLikedArticleData = await getMyLikedArticles({}, { cookieHeader });
+  const bioSection = [
+    { title: 'bio', content: 'rook!ez' },
+    { title: '지역', content: '서울' },
+    { title: '소속', content: '42seoul' },
+  ];
 
   return (
     <div>
@@ -38,18 +26,29 @@ export default async function Profile() {
       )}
       <div>
         <h3>정보</h3>
-        <dl>
-          <dt>Bio</dt>
-          {/* <dd>42World & Rookies team</dd> */}
-        </dl>
-        <dl>
-          <dt>지역</dt>
-          <dd>서울</dd>
-        </dl>
-        <dl>
-          <dt>소속</dt>
-          <dd>42Seoul</dd>
-        </dl>
+        <div>
+          <span>chichoon.choi@gmail.com</span>
+        </div>
+        <div>
+          <span>chichoon</span>
+        </div>
+        <div>
+          <span>cchichoon</span>
+        </div>
+        <div>
+          <span>cchichoon</span>
+        </div>
+        <div>
+          <span>cchichoon</span>
+        </div>
+        <div className='p-4'>
+          {bioSection.map((bio) => (
+            <div className='mb-3 last:mb-0'>
+              <h4>{bio.title}</h4>
+              <span>{bio.content}</span>
+            </div>
+          ))}
+        </div>
       </div>
       <div>
         <h3>내 게시글</h3>
