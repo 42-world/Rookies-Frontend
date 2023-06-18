@@ -1,11 +1,7 @@
 import { cookies } from 'next/headers';
-import { Category } from '@/interfaces/article';
-import { getArticles } from '@/services/getArticles';
 import { getCategories } from '@/services/getCategories';
 
 export default async function Page() {
-  const cookieHeader = cookies().toString();
-  const categoryList = await getCategories({ cookieHeader });
   // const { data: freeArticleList } = await getArticles({ order: 'DESC', page: 1, take: 10, categoryId: 1 });
   // const { data: anonymousArticleList } = await getArticles({ order: 'DESC', page: 1, take: 10, categoryId: 2 });
   // const { data: noticeArticleList } = await getArticles({ order: 'DESC', page: 1, take: 10, categoryId: 4 });
@@ -17,14 +13,16 @@ export default async function Page() {
       <h1>Rookies 홈이지롱!!</h1>
 
       <div className='flex gap-3'>
-        {/* @ts-expect-error Async Server Component */}
-        <CategoryList categoryList={categoryList} />
+        <CategoryList />
       </div>
     </>
   );
 }
 
-async function CategoryList({ categoryList }: { categoryList: Category[] }) {
+async function CategoryList() {
+  const cookieHeader = cookies().toString();
+  const categoryList = await getCategories({ cookieHeader });
+
   return (
     <>
       {categoryList.map(({ id, name }) => (
