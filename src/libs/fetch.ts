@@ -1,14 +1,10 @@
-async function request<TResponse>(
-  path: string,
-  config: RequestInit = {}
-): Promise<TResponse> {
-  const baseUrl =
-    (process.env.NEXT_PUBLIC_BASE_URL ?? 'https://api-alpha.42world.kr') + path;
+async function request<TResponse>(path: string, config: RequestInit = {}): Promise<TResponse> {
+  const baseUrl = 'https://api-alpha.42world.kr' + path;
 
   const res = await fetch(baseUrl, config);
 
   if (res.status !== 200) {
-    throw new Error('401');
+    throw new Error(`${res.status}`);
   }
   return await res.json();
 }
