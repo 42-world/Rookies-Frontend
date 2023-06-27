@@ -37,7 +37,7 @@ async function CardList() {
   return (
     <ul>
       {cardList.map(({ id, image, createdBy, createdAt, title }) => (
-        <Card key={id} imageSrc={image} primary={createdBy} secondary={createdAt.toString()} detail={title} />
+        <Card key={id} imageSrc={image} primary={createdBy} secondary={createdAt.toLocaleTimeString()} title={title} />
       ))}
     </ul>
   );
