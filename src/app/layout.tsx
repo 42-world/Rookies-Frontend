@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import '@42world/design-core/style.css';
 import './global.css';
 import Provider from '@/libs/provider';
 
