@@ -2,9 +2,10 @@
 # yarn lockfile v1
 
 
-"@42world/design-core@https://42-world.github.io/design/0.17.1-alpha96-61b8c0a/42world-design-core-v0.17.1-alpha96-61b8c0a.tgz":
-  version "0.17.1-alpha96-61b8c0a"
-  resolved "https://42-world.github.io/design/0.17.1-alpha96-61b8c0a/42world-design-core-v0.17.1-alpha96-61b8c0a.tgz#aab20648b9e97020b9fa38d37a0e6a4922ffed72"
+"@42world/design-core@^0.17.1":
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/@42world/design-core/-/design-core-0.17.1.tgz#34e172fa681aacd3d302325e3d9b42dd7b4a9099"
+  integrity sha512-BueY4OT5gejdQ+qsUBiaYEsiWYn1S0aziR8peuJG5eCL6hOcDUBJfXPlTcOAvt9bagkKPYGg/zQJUG6OuK5TvA==
   dependencies:
     "@svgr/core" "^8.0.0"
     classnames "^2.3.2"
